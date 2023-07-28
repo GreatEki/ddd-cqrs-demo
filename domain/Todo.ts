@@ -4,7 +4,7 @@ export interface TodoProps {
   isCompleted: boolean;
 }
 
-interface CreateTodoArg {
+export interface CreateTodoArg {
   name: string;
   description?: string;
 }
