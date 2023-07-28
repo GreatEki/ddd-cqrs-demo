@@ -9,6 +9,14 @@ const todoController = new TodoController(todoService);
 
 const router = Router();
 
-router.route("/todo").post(todoController.createTodoHandler);
+router
+  .route("/todo")
+  .post(todoController.createTodoHandler)
+  .get(todoController.getAllTodoHandler);
+
+router
+  .route("/todo/:todoId")
+  .put(todoController.completeTodoHandler)
+  .get(todoController.getTodoHandler);
 
 export { router };

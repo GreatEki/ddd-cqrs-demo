@@ -19,4 +19,12 @@ export class TodoRepository {
       data: { isCompleted: true },
     });
   }
+
+  async getTodos(): Promise<TodoDoc[]> {
+    return await prisma.todo.findMany();
+  }
+
+  async getTodo(id: number): Promise<TodoDoc | null> {
+    return await prisma.todo.findUnique({ where: { id } });
+  }
 }

@@ -26,4 +26,12 @@ export class TodoService implements ITodoService {
   markAsComplete(id: number): Promise<TodoDoc> {
     return this.todoRepository.completeTodo(id);
   }
+
+  getAllTodos() {
+    return this.todoRepository.getTodos();
+  }
+
+  getTodo(id: number) {
+    return this.todoRepository.getTodo(id);
+  }
 }

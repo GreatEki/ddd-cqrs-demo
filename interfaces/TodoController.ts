@@ -43,4 +43,39 @@ export class TodoController {
       next(err);
     }
   };
+
+  getAllTodoHandler = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const todos = await this.todoService.getAllTodos();
+      return res.status(200).json({
+        success: true,
+        data: todos,
+      });
+    } catch (err) {
+      next(err);
+    }
+  };
+
+  getTodoHandler = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { todoId } = req.params;
+      const todo = await this.todoService.getTodo(Number(todoId));
+
+      if (!todo) throw new Error("Todo not found");
+
+      return res.status(200).json({
+        success: true,
+        data: todo,
+      });
+    } catch (err) {
+      return res.status(500).json({
+        success: false,
+        error: err,
+      });
+    }
+  };
 }
